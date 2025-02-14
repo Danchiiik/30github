@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import get_user_model
 
-from apps.users.serializers import RegisterSerializer
+from apps.users.serializers import ChangePasswordSerializer, RegisterSerializer
 
 
 
@@ -30,5 +30,13 @@ class ActivationApiView(APIView):
             return Response({'message' : 'Success'}, status=status.HTTP_200_OK)
         except User.DoesNotExist:
             return Response({'message' : 'Invalid email'}, status=status.HTTP_400_BAD_REQUEST)
+        
 
+
+class ChangePasswordApiView(APIView):
+    def post(self, request):
+        serializer = ChangePasswordSerializer(data=request.data, context ={'request': request})
+        serializer.is_valid(raise_exception=True)
+        serializer.set_new_password()
+        return Response("Password is changed successfully", status=status.HTTP_200_OK)
 
