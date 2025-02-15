@@ -4,7 +4,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import get_user_model
 
-from apps.users.serializers import ChangePasswordSerializer, RegisterSerializer
+from apps.users.serializers import ChangePasswordSerializer, ForgotPasswordFinishSerializer, ForgotPasswordSerializer, RegisterSerializer
 
 
 
@@ -32,11 +32,27 @@ class ActivationApiView(APIView):
             return Response({'message' : 'Invalid email'}, status=status.HTTP_400_BAD_REQUEST)
         
 
-
 class ChangePasswordApiView(APIView):
     def post(self, request):
         serializer = ChangePasswordSerializer(data=request.data, context ={'request': request})
         serializer.is_valid(raise_exception=True)
         serializer.set_new_password()
         return Response("Password is changed successfully", status=status.HTTP_200_OK)
+
+
+class ForgotPasswordApiView(APIView):
+    def post(self, request):
+        serializer = ForgotPasswordSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.send_code()
+        return Response("Code has been sent to your email", status=status.HTTP_200_OK)
+
+
+class ForgotPasswordFinishApiView(APIView):
+    def post(self, request):
+        serializer = ForgotPasswordFinishSerializer(data=request.data) 
+        serializer.is_valid(raise_exception=True)
+        serializer.set_new_password()
+        return Response('Password updated succesfully', status=status.HTTP_200_OK) 
+
 

@@ -15,6 +15,8 @@ urlpatterns = [
     path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('confirm/<uuid:act_code>/', views.ActivationApiView.as_view()),
     path('change_password/', views.ChangePasswordApiView.as_view()),
+    path('forgot_password/', views.ForgotPasswordApiView.as_view()),
+    path('forgot_password_finish/', views.ForgotPasswordFinishApiView.as_view()),
 ]
 
 

@@ -56,11 +56,57 @@ class ChangePasswordSerializer(serializers.Serializer):
         user.save()
 
 
-      
+
+class ForgotPasswordSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
+
+
+    def validate_email(self, email):
+        if not User.objects.filter(email=email).exists():
+            raise serializers.ValidationError('There is no such user')
+        return email
+
+    def send_code(self):
+        email = self.validated_data.get('email')
+        user = User.objects.get(email=email)
+        user.create_act_code()
+        user.save()
+        send_confirmation_code.delay(user.email, user.act_code)
         
 
 
+class ForgotPasswordFinishSerializer(serializers.Serializer):
+    email = serializers.EmailField(required=True)
+    code = serializers.CharField(required=True)
+    password = serializers.CharField(required=True, min_length=8)
+    password2 = serializers.CharField(required=True, min_length=8)
+
+    def validate_email(self, email):
+        if not User.objects.filter(email=email).exists():
+            raise serializers.ValidationError("There is no such user")
+        return email
     
+    def validate_code(self, code):
+        if not User.objects.filter(act_code=code).exists():
+            raise serializers.ValidationError('Code is not valid')
+        return code
+    
+    def validate(self, attrs):
+        p1 = attrs.get('password')
+        p2 = attrs.get('password2')
+        if p1 != p2:
+            raise serializers.ValidationError("Passwords are not similar")
+        return attrs
+    
+    def set_new_password(self):
+        email = self.validated_data.get('email')
+        password = self.validated_data.get('password')
+        user = User.objects.get(email=email)
+        user.set_password(password)
+        user.act_code = ''
+        user.save()
+      
+
 
 
 
