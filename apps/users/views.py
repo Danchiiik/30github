@@ -1,10 +1,13 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
+from rest_framework.viewsets import mixins, GenericViewSet
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import get_user_model
 
-from apps.users.serializers import ChangePasswordSerializer, ForgotPasswordFinishSerializer, ForgotPasswordSerializer, RegisterSerializer
+from apps.users.models import Profile
+from apps.users.permissions import IsProfileOwner
+from apps.users.serializers import ChangePasswordSerializer, ForgotPasswordFinishSerializer, ForgotPasswordSerializer, ProfileSerializer, RegisterSerializer
 
 
 
@@ -56,3 +59,13 @@ class ForgotPasswordFinishApiView(APIView):
         return Response('Password updated succesfully', status=status.HTTP_200_OK) 
 
 
+
+
+class ProfileViewSet(mixins.RetrieveModelMixin, 
+                     mixins.UpdateModelMixin,
+                     mixins.ListModelMixin,
+                     GenericViewSet):
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+    permission_classes = [IsProfileOwner]
+    

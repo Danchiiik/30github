@@ -105,6 +105,20 @@ class ForgotPasswordFinishSerializer(serializers.Serializer):
         user.set_password(password)
         user.act_code = ''
         user.save()
+
+
+
+class ProfileSerializer(serializers.ModelSerializer):
+    user = serializers.ReadOnlyField(source='user.email')
+
+    class Meta:
+        model = Profile
+        fields = '__all__'
+
+
+        
+        
+  
       
 
 

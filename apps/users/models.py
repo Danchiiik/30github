@@ -65,17 +65,12 @@ class CustomUser(AbstractUser):
 class Profile(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='profiles')
     avatar = models.ImageField(null=True, blank=True, upload_to='images/avatar/')
-    username = models.CharField(max_length=100)
-    description = models.CharField(max_length=1500, null=True, blank=True)
-    url = models.URLField(max_length=250, null=True, blank=True)
     
     def save(self, *args, **kwargs):
-        if not self.username:
-            self.username = 'User' + str(self.user.id)
         super().save(*args, **kwargs)
         
     def __str__(self) -> str:
-        return f'{self.username} - {str(self.user.email)}'
+        return f'{self.user.email}'
         
     class Meta:
         verbose_name = 'Profile'

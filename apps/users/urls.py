@@ -7,7 +7,7 @@ from . import views
 
 
 router = DefaultRouter()
-# router.register('', views.ProfileViewSet)
+router.register('', views.ProfileViewSet)
 
 urlpatterns = [
     path('register/', views.RegisterApiView.as_view()),
@@ -17,6 +17,7 @@ urlpatterns = [
     path('change_password/', views.ChangePasswordApiView.as_view()),
     path('forgot_password/', views.ForgotPasswordApiView.as_view()),
     path('forgot_password_finish/', views.ForgotPasswordFinishApiView.as_view()),
+    path('profile/', include(router.urls)),
 ]
 
 
