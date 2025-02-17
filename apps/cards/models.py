@@ -4,16 +4,19 @@ from django.db import models
 
 
 class Cards(models.Model):
+
     name = models.CharField(max_length=150)
     surname = models.CharField(max_length=150)
     image = models.FileField(upload_to='images/')  # Main thumbnail image
+
+
     country = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
-    adress = models.CharField(max_length=100)
+    address = models.CharField(max_length=100)
     phone = models.CharField(max_length=50)
     email = models.EmailField()
-    # owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cards')
 
+    
 
     def __str__(self) -> str:
         return self.name
