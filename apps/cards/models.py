@@ -2,6 +2,22 @@ from django.db import models
 
 
 
+GENDER = (
+    ('male', 'male'),
+    ('female', 'female')
+)
+
+DEGREES = (
+    ('Bachelor', 'Bachelor'),
+    ('Master', 'Master'),
+    ('PhD', 'PhD')
+)
+
+STATUS_OF_STUDIES = (
+    ('In process', 'In process'),
+    ('Finished', 'Finished')
+)
+
 
 class Cards(models.Model):
 
@@ -9,12 +25,36 @@ class Cards(models.Model):
     surname = models.CharField(max_length=150)
     image = models.FileField(upload_to='images/')  # Main thumbnail image
 
-
     country = models.CharField(max_length=50)
+    citizenship = models.CharField(max_length=100)
+    gender = models.CharField(choices=GENDER, max_length=10)
     city = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
     phone = models.CharField(max_length=50)
     email = models.EmailField()
+
+    name_father = models.CharField(max_length=30)
+    surname_father = models.CharField(max_length=50)
+    name_mother = models.CharField(max_length=30)
+    surname_mother = models.CharField(max_length=50)
+    siblings = models.PositiveIntegerField(default=0)
+
+    degree = models.CharField(choices=DEGREES, max_length=15)
+    previous_school = models.CharField(max_length=200)
+    status_of_studies = models.CharField(choices=STATUS_OF_STUDIES, max_length=15)
+    graduation = models.DateTimeField()
+    study_country = models.CharField(max_length=50)
+    study_address = models.CharField(max_length=100)
+    study_language = models.CharField(max_length=50)
+    gpa = models.FloatField()
+    
+
+
+
+
+
+
+
 
     
 
