@@ -47,19 +47,31 @@ class Cards(models.Model):
     study_address = models.CharField(max_length=100)
     study_language = models.CharField(max_length=50)
     gpa = models.FloatField()
+
+
+    wanted_degrees = models.CharField(choices=..., max_length=200)
+    wanted_countries = models.CharField(choices=..., max_length=200)
+    financial_support = models.BooleanField(default=False)
+
+
+    essay = models.CharField(max_length=5000, null=True, blank=True)
+    diploma = models.FileField()
+    documents = models.FileField()
+
+
     
 
-
-
-
-
-
-
+    
 
     
 
     def __str__(self) -> str:
         return self.name
+
+
+    class Meta:
+        verbose_name = 'Card'
+        verbose_name_plural = 'Cards'
 
 
 # class Events(models.Model):
