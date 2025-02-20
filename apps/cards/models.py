@@ -1,5 +1,9 @@
 from django.db import models
 
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
+
 
 
 GENDER = (
@@ -21,6 +25,7 @@ STATUS_OF_STUDIES = (
 
 class Cards(models.Model):
 
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=150)
     surname = models.CharField(max_length=150)
     image = models.FileField(upload_to='images/')  # Main thumbnail image
