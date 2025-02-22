@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     
     #apps
     'apps.users',
-    # 'apps.cards',
+    'apps.cards',
     # 'apps',
 ]
 

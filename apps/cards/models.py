@@ -46,16 +46,16 @@ class Cards(models.Model):
 
     degree = models.CharField(choices=DEGREES, max_length=15)
     previous_school = models.CharField(max_length=200)
-    status_of_studies = models.CharField(choices=STATUS_OF_STUDIES, max_length=15)
-    graduation = models.DateTimeField()
+    status_of_studies = models.CharField(max_length=15, choices=STATUS_OF_STUDIES)
+    graduation = models.DateField()
     study_country = models.CharField(max_length=50)
     study_address = models.CharField(max_length=100)
     study_language = models.CharField(max_length=50)
     gpa = models.FloatField()
 
 
-    wanted_degrees = models.CharField(choices=..., max_length=200)
-    wanted_countries = models.CharField(choices=..., max_length=200)
+    # wanted_degrees = models.CharField(choices=..., max_length=200)
+    # wanted_countries = models.CharField(choices=..., max_length=200)
     financial_support = models.BooleanField(default=False)
 
 

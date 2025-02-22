@@ -13,6 +13,9 @@ class CardsViewSet(mixins.CreateModelMixin,
                    mixins.ListModelMixin,
                    mixins.RetrieveModelMixin,
                    GenericViewSet):
-    queryset = Cards
+    queryset = Cards.objects.all()
     serializer_class = CardsSerializer
     permission_classes = [CardsPermissions]
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
