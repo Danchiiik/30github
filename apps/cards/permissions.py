@@ -7,4 +7,4 @@ class CardsPermissions(BasePermission):
         if request in SAFE_METHODS:
             return True
         
-        return request.user.is_authenticated and request.user.is_owner
+        return request.user.is_authenticated and (request.user == obj.owner)
