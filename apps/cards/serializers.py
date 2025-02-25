@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from datetime import datetime
 
 from apps.cards.models import Cards, Documents
 
@@ -18,23 +19,21 @@ class CardsSerializer(serializers.ModelSerializer):
         model = Cards
         fields = '__all__'
 
+
     def create(self, validated_data):
-        documents_data = validated_data.pop('documents', [])
-        card = Cards.objects.create(**validated_data)
+        request = self.context.get('request')
+        files_data = request.FILES.getlist('documents')  
         
-        for doc_data in documents_data:
-            document = Documents.objects.create(file=doc_data['file'])
-            card.documents.add(document)
+        card = Cards.objects.create(**validated_data)
+
+        for file in files_data:
+            Documents.objects.create(card=card, document=file)
 
         return card
+    
 
-    def update(self, instance, validated_data):
-        documents_data = validated_data.pop('documents', None)
-
-        if documents_data is not None:
-            instance.documents.clear()
-            for doc_data in documents_data:
-                document = Documents.objects.create(file=doc_data['file'])
-                instance.documents.add(document)
-
-        return super().update(instance, validated_data)
+    def to_representation(self, instance):
+        rep =  super().to_representation(instance)
+        rep['graduation'] = instance.graduation.strftime('%d.%m.%Y')
+        return rep
+    

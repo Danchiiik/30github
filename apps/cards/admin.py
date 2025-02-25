@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from apps.cards.models import Cards
+from apps.cards.models import Cards, Documents
 
 
-admin.register(Cards)
+admin.site.register(Cards)
+admin.site.register(Documents)

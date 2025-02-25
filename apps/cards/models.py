@@ -201,9 +201,6 @@ WANTED_COUNTRIES = (
 )
 
 
-class Documents(models.Model):
-    document = models.FileField(upload_to='documents/')
-
 
 class Cards(models.Model):
 
@@ -241,7 +238,7 @@ class Cards(models.Model):
 
     essay = models.CharField(max_length=5000, null=True, blank=True)
     diploma = models.FileField(upload_to='diploma/')
-    documents = models.ManyToManyField(Documents, related_name='cards')
+    # documents = models.FileField(upload_to='documents/')
     
 
     def __str__(self) -> str:
@@ -253,7 +250,10 @@ class Cards(models.Model):
         verbose_name_plural = 'Cards'
 
 
+
 class Documents(models.Model):
-    card = models.ForeignKey(Cards, on_delete=models.CASCADE, related_name='cards_document')
+    card = models.ForeignKey(Cards, on_delete=models.CASCADE, related_name='documents')
     document = models.FileField(upload_to='documents/')
+
+
 
