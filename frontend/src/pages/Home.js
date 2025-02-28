@@ -1,16 +1,19 @@
 import React from "react";
-import "./../styles/home.css";
+import "./../styles/Home.css";
 
-import Navbar from "../components/navbar";
-import Footer from "../components/footer";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function Home() {
     return (
-        <div className="home">
+        <section className="home">
+        <div>
             <Navbar />
             <h1>Welcome to Home Page</h1>
             <Footer />
         </div>
+
+        </section>
     );
 }
 

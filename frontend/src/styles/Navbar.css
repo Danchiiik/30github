@@ -1,0 +1,47 @@
+.navbar_main_div {
+    width: 1600px;
+    border: 2px black solid;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+
+}
+
+
+.logo_div {
+
+
+    .logo_text {
+        font-size: 30px;
+        font-weight: 600;
+        color: #000;
+        color: rgb(48, 124, 255);
+    }
+}
+
+.signup_login {
+    width: 150px;
+    border: 2px solid black;
+    display: flex;
+    justify-content: space-between;
+
+    .signup {
+        font-weight: 600;
+
+        &:hover {
+            color: rgb(48, 124, 255);
+        }
+    }   
+
+
+    .login {
+        font-weight: 600;
+
+        &:hover {
+            color: rgb(48, 124, 255);
+        }
+    }   
+
+}
+
