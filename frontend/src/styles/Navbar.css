@@ -26,6 +26,7 @@
     display: flex;
     justify-content: space-between;
 
+
     .signup {
         font-weight: 600;
 
@@ -33,7 +34,6 @@
             color: rgb(48, 124, 255);
         }
     }   
-
 
     .login {
         font-weight: 600;

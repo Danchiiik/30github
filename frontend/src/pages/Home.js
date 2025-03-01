@@ -10,8 +10,8 @@ function Home() {
         <div>
             <Navbar />
             <h1>Welcome to Home Page</h1>
-            <Footer />
         </div>
+            <Footer />
 
         </section>
     );

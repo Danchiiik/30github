@@ -1,14 +1,11 @@
 
-.app {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  
-    .events {
-        flex: 1;
-        margin-bottom: 60px;
-    }
-  }
+.home {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
   
   .footer-wrapper {
       display: flex;
@@ -16,6 +13,7 @@
   }
   
   .footer {
+      margin-top: auto;
       border-radius: 20px 20px 0 0;
       background-color: rgb(0, 0, 0);
       color: #ffffff;
@@ -24,11 +22,13 @@
       display: flex;
       justify-content: center;
     }
+   
     
   .footer .container {
+    margin-top: auto;
     width: 100%;
     max-width: 1600px;
-    margin: 0 auto; /* Center the footer container */
+    margin: 0 auto; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -87,14 +87,3 @@
     text-align: center;
   }
   
-  /* img.logo-contact {
-    margin: 5px 15px 0px 0px;
-    width: 30px;
-    height: 30px;
-    filter: invert(1);
-  
-    &:hover {
-      transition: 0.2s;
-      transform: scale(1.2);
-    } */
-  /* } */
