@@ -47,13 +47,13 @@ function Signup () {
             </div>
 
 
-            <div class="register-form" v-else>
+            {/* <div class="register-form" v-else>
                 <div class="registered-text-div">
                     <p class="registered-text">
                         Вы успешно зарегестрировались! Пожалуйста проверьте свою почту для дальнейших действий
                     </p> 
                 </div>
-            </div>
+            </div> */}
         </div>
         </section>
 );
