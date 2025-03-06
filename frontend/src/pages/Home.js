@@ -9,7 +9,7 @@ function Home() {
         <section className="home">
             <Navbar />
         <div>
-            <h1>Welcome to Home Page</h1>
+            <h1>ChooseMe</h1>
         </div>
             <Footer />
 
