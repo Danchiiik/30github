@@ -10,6 +10,7 @@ function Home() {
             <Navbar />
         <div>
             <h1>ChooseMe</h1>
+            <h2>hello</h2>
         </div>
             <Footer />
 
