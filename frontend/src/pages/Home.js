@@ -10,6 +10,7 @@ function Home() {
             <Navbar />
         <div>
             <h1>ChooseMe</h1>
+            <h2>платформа для поиска возможностей учиться за границей</h2>
         </div>
             <Footer />
 
